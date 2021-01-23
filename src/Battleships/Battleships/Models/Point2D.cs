@@ -8,8 +8,8 @@ namespace Battleships.Models
 {
     public class Point2D : IEquatable<Point2D>
     {
-        private int X { get; set; }
-        private int Y { get; set; }
+        public int X { get;  }
+        public int Y { get;  }
 
         public override string ToString()
         {

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Battleship.cs" />
     <Compile Include="Models\Board.cs" />
     <Compile Include="Models\Point2D.cs" />
     <Compile Include="Models\Ship.cs" />

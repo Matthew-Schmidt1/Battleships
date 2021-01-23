@@ -14,10 +14,9 @@ namespace UnitTestBattleships.Models
         {
             var boardOne = new Board();
 
-            Assert.AreEqual(boardOne._MaxX, 8);
-            Assert.AreEqual(boardOne._MaxY, 8);
+            Assert.AreEqual(boardOne.MaxX, 8);
+            Assert.AreEqual(boardOne.MaxY, 8);
             Assert.IsTrue(boardOne.Ships.Count == 2);
-
         }
 
         [TestMethod]
@@ -25,10 +24,9 @@ namespace UnitTestBattleships.Models
         {
             var boardOne = new Board(10, 10, 100);
 
-            Assert.AreEqual(boardOne._MaxX, 10);
-            Assert.AreEqual(boardOne._MaxY, 10);
+            Assert.AreEqual(boardOne.MaxX, 10);
+            Assert.AreEqual(boardOne.MaxY, 10);
             Assert.IsTrue(boardOne.Ships.Count == 100);
-
         }
 
         [TestMethod]
@@ -78,9 +76,24 @@ namespace UnitTestBattleships.Models
             Assert.IsTrue(result.Contains("hit"));
 
             Assert.IsTrue(boardOne.Ships.Where<Ship>(s => !s.IsDead()).Count() == ships.Count() - 1);
-
-
         }
+
+
+        [TestMethod]
+        public void TestGameOver()
+        {
+            List<Ship> ships = new List<Ship>() { new Ship(new Point2D(0, 1)), new Ship(new Point2D(0, 8)) };
+
+            var boardOne = new Board(8, 8, ships);
+
+            boardOne.Shot(new Point2D(0, 8));
+            Assert.IsFalse(boardOne.IsGameOver());
+
+            boardOne.Shot(new Point2D(0, 1));
+            Assert.IsTrue(boardOne.IsGameOver());
+        }
+
+
 
     }
 }
